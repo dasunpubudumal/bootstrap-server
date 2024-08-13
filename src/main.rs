@@ -1,6 +1,7 @@
 use core::panic;
 use std::{io::{self, prelude::*, BufReader, Error}, net::{TcpListener, TcpStream}, vec};
 use log::info;
+use terminal_banner::Banner;
 use std::io::ErrorKind;
 use rand::prelude::*;
 
@@ -16,6 +17,12 @@ fn main() {
 
     let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
     let mut neighbour_vector: Vec<Neighbour> = vec![];
+
+    let banner = Banner::new()
+    .text("Bootstrap server".into())
+    .text("Bootstrap server is listening to incoming connections.".into())
+    .render();
+    println!("{}", banner);
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
