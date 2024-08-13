@@ -25,7 +25,7 @@ fn main() {
     }
 }
 
-fn handle_connection<'a>(mut stream: TcpStream, vector: &'a mut Vec<Neighbour>) -> Result<()> {
+fn handle_connection<'a>(mut stream: TcpStream, vector: &'a mut Vec<Neighbour>) -> std::io::Result<()> {
     let buf_reader = BufReader::new(&mut stream);
     let http_request: Vec<_> = buf_reader
         .lines()
