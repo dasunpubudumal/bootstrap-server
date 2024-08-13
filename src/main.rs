@@ -1,5 +1,5 @@
 use core::panic;
-use std::{io::{self, prelude::*, BufReader, Error}, net::{TcpListener, TcpStream}, vec};
+use std::{io::{self, prelude::*, BufReader}, net::{TcpListener, TcpStream}, vec};
 use log::info;
 use terminal_banner::Banner;
 use std::io::ErrorKind;
@@ -28,7 +28,7 @@ fn main() {
         let stream = stream.unwrap();
 
         println!("Connection established!");
-        handle_connection(stream, &mut neighbour_vector);
+        let _ = handle_connection(stream, &mut neighbour_vector);
     }
 }
 
